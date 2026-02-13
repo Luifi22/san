@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Acceso restringido</title>
+
+<style>
+body{
+    background:#0d0d0d;
+    color:#00ffcc;
+    font-family:monospace;
+    text-align:center;
+    padding-top:80px;
+}
+
+input{
+    padding:10px;
+    font-size:16px;
+    background:black;
+    color:#00ffcc;
+    border:1px solid #00ffcc;
+}
+
+button{
+    padding:10px 20px;
+    font-size:16px;
+    margin-top:10px;
+    background:black;
+    color:#00ffcc;
+    border:1px solid #00ffcc;
+}
+
+.hidden{
+    display:none;
+}
+
+#final{
+    font-size:28px;
+    color:#ff4da6;
+}
+
+</style>
+</head>
+<body>
+
+<h2 id="titulo">Sistema de verificación iniciado...</h2>
+
+<div id="acertijo1">
+<p>Acertijo 1:</p>
+<p>Es un lenguaje que no hablo, pero tú entiendes cuando te miro.</p>
+<input type="text" id="respuesta1">
+<br>
+<button onclick="verificar1()">Enviar</button>
+</div>
+
+<div id="acertijo2" class="hidden">
+<p>Acertijo 2:</p>
+<p>No soy programa, pero tengo lógica.<br>
+No soy red, pero te conecto a mí.</p>
+<input type="text" id="respuesta2">
+<br>
+<button onclick="verificar2()">Enviar</button>
+</div>
+
+<div id="acertijo3" class="hidden">
+<p>Acertijo 3:</p>
+<p>No soy algoritmo, pero tengo pasos.<br>
+No soy código, pero contigo funciona perfecto.</p>
+<input type="text" id="respuesta3">
+<br>
+<button onclick="verificar3()">Enviar</button>
+</div>
+
+<div id="finalPregunta" class="hidden">
+<h1 id="final"></h1>
+<button onclick="aceptar()">Sí ❤️</button>
+<button id="no" onmouseover="mover()">No</button>
+</div>
+
+<script>
+
+let palabras = [];
+
+function verificar1(){
+
+let r = document.getElementById("respuesta1").value.toLowerCase();
+
+if(r.includes("amor")){
+palabras.push("¿Quieres");
+document.getElementById("acertijo1").classList.add("hidden");
+document.getElementById("acertijo2").classList.remove("hidden");
+}
+else{
+alert("Respuesta incorrecta... intenta otra vez ❤️");
+}
+}
+
+function verificar2(){
+
+let r = document.getElementById("respuesta2").value.toLowerCase();
+
+if(r.includes("corazon") || r.includes("corazón")){
+palabras.push("ser");
+document.getElementById("acertijo2").classList.add("hidden");
+document.getElementById("acertijo3").classList.remove("hidden");
+}
+else{
+alert("Respuesta incorrecta...");
+}
+}
+
+function verificar3(){
+
+let r = document.getElementById("respuesta3").value.toLowerCase();
+
+if(r.includes("relacion") || r.includes("relación")){
+palabras.push("mi San Valentín?");
+document.getElementById("acertijo3").classList.add("hidden");
+
+document.getElementById("finalPregunta").classList.remove("hidden");
+
+document.getElementById("final").innerHTML =
+palabras.join(" ") + " ❤️";
+}
+else{
+alert("Respuesta incorrecta...");
+}
+}
+
+function aceptar(){
+
+document.body.innerHTML =
+"<h1>Acceso concedido ❤️</h1><h2>Eres el amor de mi vida</h2>";
+
+}
+
+function mover(){
+
+let x = Math.random()*window.innerWidth;
+let y = Math.random()*window.innerHeight;
+
+document.getElementById("no").style.position="absolute";
+document.getElementById("no").style.left = x+"px";
+document.getElementById("no").style.top = y+"px";
+
+}
+
+</script>
+
+</body>
+</html>
